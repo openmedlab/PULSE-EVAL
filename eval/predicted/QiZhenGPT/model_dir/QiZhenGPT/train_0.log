@@ -1,0 +1,251 @@
+/mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/models/QiZhenGPT/QiZhenGPT_predict.py:30: FutureWarning: set_caching_enabled is deprecated and will be removed in the next major version of datasets. Use datasets.enable_caching() or datasets.disable_caching() instead. This function will be removed in a future version of datasets.
+  set_caching_enabled(False)
+12/08/2023 19:58:20 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: True
+12/08/2023 19:58:20 - INFO - __main__ - CUDA_VISIBLE_DEVICES = 0,1,2,3,4,5,6,7
+12/08/2023 19:58:20 - INFO - __main__ - Training/evaluation parameters Seq2SeqTrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=1,
+eval_delay=0,
+eval_steps=512,
+evaluation_strategy=steps,
+fp16=True,
+fp16_backend=auto,
+fp16_full_eval=True,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'fsdp_min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_config=None,
+generation_max_length=None,
+generation_num_beams=None,
+gradient_accumulation_steps=1,
+gradient_checkpointing=True,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=9.65e-06,
+length_column_name=length,
+load_best_model_at_end=True,
+local_rank=0,
+log_level=info,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=./model_dir/QiZhenGPT/runs/Dec08_19-58-17_SH-IDC1-10-140-0-200,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=4,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=73728,
+metric_for_best_model=eval_loss,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=./model_dir/QiZhenGPT/,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=1,
+per_device_train_batch_size=1,
+predict_with_generate=False,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=False,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=./model_dir/QiZhenGPT/,
+save_on_each_node=False,
+save_safetensors=False,
+save_steps=512,
+save_strategy=steps,
+save_total_limit=2,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+sortish_sampler=False,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/08/2023 19:58:20 - INFO - __main__ - My parameters MyArguments(data_path='/mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/', predict_output_path='/mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/', model_name='/mnt/petrelfs/xuekui/pretrain_weights/nlp/zhixi-13b', tokenizer_name='/mnt/petrelfs/xuekui/pretrain_weights/nlp/zhixi-13b', lora_weights='/mnt/petrelfs/xuekui/pretrain_weights/nlp/启真医学大模型/CaMA/checkpoint-12400', train_max_len=2048, gen_max_len=512)
+[INFO|tokenization_utils_base.py:1807] 2023-12-08 19:58:20,612 >> loading file tokenizer.model
+[INFO|tokenization_utils_base.py:1807] 2023-12-08 19:58:20,612 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:1807] 2023-12-08 19:58:20,613 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:1807] 2023-12-08 19:58:20,613 >> loading file tokenizer_config.json
+[INFO|configuration_utils.py:666] 2023-12-08 19:58:20,671 >> loading configuration file /mnt/petrelfs/xuekui/pretrain_weights/nlp/zhixi-13b/config.json
+[INFO|configuration_utils.py:720] 2023-12-08 19:58:20,672 >> Model config LlamaConfig {
+  "_name_or_path": "./zhixi-diff",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "hidden_act": "silu",
+  "hidden_size": 5120,
+  "initializer_range": 0.02,
+  "intermediate_size": 13824,
+  "max_position_embeddings": 2048,
+  "model_type": "llama",
+  "num_attention_heads": 40,
+  "num_hidden_layers": 40,
+  "pad_token_id": 0,
+  "rms_norm_eps": 1e-06,
+  "tie_word_embeddings": false,
+  "torch_dtype": "float32",
+  "transformers_version": "4.28.1",
+  "use_cache": false,
+  "vocab_size": 32000
+}
+
+[INFO|modeling_utils.py:2531] 2023-12-08 19:58:20,674 >> loading weights file /mnt/petrelfs/xuekui/pretrain_weights/nlp/zhixi-13b/pytorch_model.bin.index.json
+[INFO|modeling_utils.py:1176] 2023-12-08 19:58:20,677 >> Instantiating LlamaForCausalLM model under default dtype torch.float16.
+[INFO|configuration_utils.py:575] 2023-12-08 19:58:20,678 >> Generate config GenerationConfig {
+  "_from_model_config": true,
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "pad_token_id": 0,
+  "transformers_version": "4.28.1",
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:32<02:41, 32.30s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [01:04<02:09, 32.28s/it]Loading checkpoint shards:  50%|█████     | 3/6 [01:36<01:36, 32.22s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [02:07<01:03, 31.80s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [02:38<00:31, 31.46s/it]Loading checkpoint shards: 100%|██████████| 6/6 [02:45<00:00, 22.95s/it]Loading checkpoint shards: 100%|██████████| 6/6 [02:45<00:00, 27.53s/it]
+[INFO|modeling_utils.py:3190] 2023-12-08 20:04:58,975 >> All model checkpoint weights were used when initializing LlamaForCausalLM.
+
+[INFO|modeling_utils.py:3198] 2023-12-08 20:04:58,977 >> All the weights of LlamaForCausalLM were initialized from the model checkpoint at /mnt/petrelfs/xuekui/pretrain_weights/nlp/zhixi-13b.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use LlamaForCausalLM for predictions without further training.
+[INFO|configuration_utils.py:535] 2023-12-08 20:04:58,982 >> loading configuration file /mnt/petrelfs/xuekui/pretrain_weights/nlp/zhixi-13b/generation_config.json
+[INFO|configuration_utils.py:575] 2023-12-08 20:04:58,982 >> Generate config GenerationConfig {
+  "_from_model_config": true,
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "pad_token_id": 0,
+  "transformers_version": "4.28.1",
+  "use_cache": false
+}
+
+12/08/2023 20:07:21 - INFO - __main__ - Training new model from scratch - Trainable size=0.00M params - Total size=12651.65M params
+[INFO|trainer.py:564] 2023-12-08 20:07:31,209 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:621] 2023-12-08 20:07:31,210 >> Using cuda_amp half precision backend
+12/08/2023 20:07:31 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/CheckupQA.jsonl
+12/08/2023 20:07:31 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/CheckupQA.jsonl
+12/08/2023 20:07:31 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/CheckupQA.jsonl is finish, continue
+12/08/2023 20:07:31 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/DBMHG.jsonl
+12/08/2023 20:07:31 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/DBMHG.jsonl
+12/08/2023 20:07:31 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/DBMHG.jsonl is finish, continue
+12/08/2023 20:07:31 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/EMRHG.jsonl
+12/08/2023 20:07:31 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/EMRHG.jsonl
+12/08/2023 20:07:32 - INFO - datasets.builder - Using custom data configuration default-a1749b1f99be8c93
+12/08/2023 20:07:32 - INFO - datasets.info - Loading Dataset Infos from /mnt/cache/xuekui/opt/miniconda3/envs/torch1.13/lib/python3.9/site-packages/datasets/packaged_modules/json
+12/08/2023 20:07:32 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+12/08/2023 20:07:32 - INFO - datasets.info - Loading Dataset info from /mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-a1749b1f99be8c93/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4
+12/08/2023 20:07:32 - WARNING - datasets.builder - Found cached dataset json (/mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-a1749b1f99be8c93/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+12/08/2023 20:07:32 - INFO - datasets.info - Loading Dataset info from /mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-a1749b1f99be8c93/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4
+Map:   0%|          | 0/150 [00:00<?, ? examples/s]12/08/2023 20:07:32 - INFO - datasets.arrow_dataset - Caching processed dataset at /tmp/tmpnaoiq0mv/cache-1c80317fa3b1799d.arrow
+Map: 100%|██████████| 150/150 [00:00<00:00, 601.92 examples/s]                                                              [INFO|trainer.py:3129] 2023-12-08 20:07:32,475 >> ***** Running Prediction *****
+[INFO|trainer.py:3131] 2023-12-08 20:07:32,475 >>   Num examples = 150
+[INFO|trainer.py:3134] 2023-12-08 20:07:32,476 >>   Batch size = 1
+[INFO|configuration_utils.py:575] 2023-12-08 20:07:32,486 >> Generate config GenerationConfig {
+  "_from_model_config": true,
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "pad_token_id": 0,
+  "transformers_version": "4.28.1",
+  "use_cache": false
+}
+
+  0%|          | 0/19 [00:00<?, ?it/s] 11%|█         | 2/19 [01:05<09:13, 32.55s/it] 16%|█▌        | 3/19 [02:51<16:54, 63.38s/it] 21%|██        | 4/19 [04:10<17:18, 69.24s/it] 26%|██▋       | 5/19 [06:15<20:39, 88.50s/it] 32%|███▏      | 6/19 [07:37<18:44, 86.48s/it] 37%|███▋      | 7/19 [09:05<17:22, 86.87s/it] 42%|████▏     | 8/19 [09:30<12:21, 67.43s/it] 47%|████▋     | 9/19 [10:47<11:44, 70.40s/it] 53%|█████▎    | 10/19 [12:28<11:58, 79.89s/it] 58%|█████▊    | 11/19 [14:05<11:19, 84.96s/it] 63%|██████▎   | 12/19 [15:38<10:12, 87.54s/it] 68%|██████▊   | 13/19 [17:23<09:16, 92.70s/it] 74%|███████▎  | 14/19 [19:13<08:10, 98.06s/it] 79%|███████▉  | 15/19 [21:27<07:15, 108.83s/it] 84%|████████▍ | 16/19 [22:13<04:29, 89.88s/it]  89%|████████▉ | 17/19 [23:29<02:51, 85.69s/it] 95%|█████████▍| 18/19 [25:14<01:31, 91.45s/it]100%|██████████| 19/19 [26:21<00:00, 84.27s/it]100%|██████████| 19/19 [26:21<00:00, 83.26s/it]
+12/08/2023 20:36:07 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedHG.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedHG.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedHG.jsonl is finish, continue
+12/08/2023 20:36:07 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedQA-USMLE.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedQA-USMLE.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedQA-USMLE.jsonl is finish, continue
+12/08/2023 20:36:07 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedQA_Mainland.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedQA_Mainland.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedQA_Mainland.jsonl is finish, continue
+12/08/2023 20:36:07 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedTreat.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedTreat.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedTreat.jsonl is finish, continue
+12/08/2023 20:36:07 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedTreat1.jsonl
+12/08/2023 20:36:07 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedTreat1.jsonl
+12/08/2023 20:36:08 - INFO - datasets.builder - Using custom data configuration default-79d0a7128d477224
+12/08/2023 20:36:08 - INFO - datasets.info - Loading Dataset Infos from /mnt/cache/xuekui/opt/miniconda3/envs/torch1.13/lib/python3.9/site-packages/datasets/packaged_modules/json
+12/08/2023 20:36:08 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+12/08/2023 20:36:08 - INFO - datasets.info - Loading Dataset info from /mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-79d0a7128d477224/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4
+12/08/2023 20:36:08 - WARNING - datasets.builder - Found cached dataset json (/mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-79d0a7128d477224/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+12/08/2023 20:36:08 - INFO - datasets.info - Loading Dataset info from /mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-79d0a7128d477224/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4
+Map:   0%|          | 0/150 [00:00<?, ? examples/s]12/08/2023 20:36:08 - INFO - datasets.arrow_dataset - Caching processed dataset at /tmp/tmpnaoiq0mv/cache-bdd640fb06671ad1.arrow
+Map: 100%|██████████| 150/150 [00:00<00:00, 573.41 examples/s]                                                              [INFO|trainer.py:3129] 2023-12-08 20:36:08,783 >> ***** Running Prediction *****
+[INFO|trainer.py:3131] 2023-12-08 20:36:08,784 >>   Num examples = 150
+[INFO|trainer.py:3134] 2023-12-08 20:36:08,785 >>   Batch size = 1
+  0%|          | 0/19 [00:00<?, ?it/s] 11%|█         | 2/19 [01:59<16:53, 59.60s/it] 16%|█▌        | 3/19 [03:59<22:38, 84.88s/it] 21%|██        | 4/19 [06:34<27:43, 110.93s/it] 26%|██▋       | 5/19 [09:02<28:54, 123.89s/it] 32%|███▏      | 6/19 [11:42<29:27, 135.94s/it] 37%|███▋      | 7/19 [13:50<26:42, 133.51s/it] 42%|████▏     | 8/19 [16:14<25:02, 136.58s/it] 47%|████▋     | 9/19 [18:28<22:39, 135.97s/it] 53%|█████▎    | 10/19 [24:15<30:05, 200.62s/it] 58%|█████▊    | 11/19 [27:19<26:05, 195.72s/it] 63%|██████▎   | 12/19 [30:32<22:42, 194.64s/it] 68%|██████▊   | 13/19 [32:51<17:48, 178.10s/it] 74%|███████▎  | 14/19 [35:00<13:35, 163.11s/it] 79%|███████▉  | 15/19 [37:12<10:15, 153.87s/it] 84%|████████▍ | 16/19 [39:41<07:36, 152.17s/it] 89%|████████▉ | 17/19 [42:26<05:12, 156.13s/it] 95%|█████████▍| 18/19 [54:03<05:18, 318.53s/it]100%|██████████| 19/19 [55:39<00:00, 251.73s/it]100%|██████████| 19/19 [55:39<00:00, 175.75s/it]
+12/08/2023 21:34:33 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedTriage.jsonl
+12/08/2023 21:34:33 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedTriage.jsonl
+12/08/2023 21:34:34 - INFO - datasets.builder - Using custom data configuration default-36d606802967f918
+12/08/2023 21:34:34 - INFO - datasets.info - Loading Dataset Infos from /mnt/cache/xuekui/opt/miniconda3/envs/torch1.13/lib/python3.9/site-packages/datasets/packaged_modules/json
+12/08/2023 21:34:34 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+12/08/2023 21:34:34 - INFO - datasets.info - Loading Dataset info from /mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-36d606802967f918/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4
+12/08/2023 21:34:34 - WARNING - datasets.builder - Found cached dataset json (/mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-36d606802967f918/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+12/08/2023 21:34:34 - INFO - datasets.info - Loading Dataset info from /mnt/petrelfs/xuekui/.cache/huggingface/datasets/json/default-36d606802967f918/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4
+Map:   0%|          | 0/150 [00:00<?, ? examples/s]12/08/2023 21:34:34 - INFO - datasets.arrow_dataset - Caching processed dataset at /tmp/tmpnaoiq0mv/cache-3eb13b9046685257.arrow
+Map: 100%|██████████| 150/150 [00:00<00:00, 700.36 examples/s]                                                              [INFO|trainer.py:3129] 2023-12-08 21:34:34,616 >> ***** Running Prediction *****
+[INFO|trainer.py:3131] 2023-12-08 21:34:34,616 >>   Num examples = 150
+[INFO|trainer.py:3134] 2023-12-08 21:34:34,617 >>   Batch size = 1
+  0%|          | 0/19 [00:00<?, ?it/s] 11%|█         | 2/19 [02:44<23:19, 82.32s/it] 16%|█▌        | 3/19 [05:47<33:06, 124.13s/it] 21%|██        | 4/19 [10:39<46:44, 186.95s/it] 26%|██▋       | 5/19 [13:45<43:29, 186.39s/it] 32%|███▏      | 6/19 [16:55<40:39, 187.64s/it] 37%|███▋      | 7/19 [19:59<37:18, 186.55s/it] 42%|████▏     | 8/19 [23:14<34:41, 189.23s/it] 47%|████▋     | 9/19 [26:14<31:03, 186.36s/it] 53%|█████▎    | 10/19 [29:43<29:00, 193.34s/it] 58%|█████▊    | 11/19 [33:03<26:02, 195.28s/it] 63%|██████▎   | 12/19 [36:18<22:45, 195.08s/it] 68%|██████▊   | 13/19 [43:31<26:42, 267.15s/it] 74%|███████▎  | 14/19 [47:10<21:03, 252.68s/it] 79%|███████▉  | 15/19 [50:13<15:26, 231.59s/it] 84%|████████▍ | 16/19 [53:22<10:56, 218.74s/it] 89%|████████▉ | 17/19 [56:22<06:54, 207.06s/it] 95%|█████████▍| 18/19 [1:02:11<04:09, 249.79s/it]100%|██████████| 19/19 [1:09:12<00:00, 301.35s/it]100%|██████████| 19/19 [1:09:12<00:00, 218.57s/it]
+12/08/2023 22:47:05 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/MedicineQA_RAG.jsonl
+12/08/2023 22:47:05 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedicineQA_RAG.jsonl
+12/08/2023 22:47:05 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/MedicineQA_RAG.jsonl is finish, continue
+12/08/2023 22:47:05 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/PromptCBLUE.jsonl
+12/08/2023 22:47:05 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/PromptCBLUE.jsonl
+12/08/2023 22:47:05 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/PromptCBLUE.jsonl is finish, continue
+12/08/2023 22:47:05 - INFO - __main__ - run eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/data/webMedQA.jsonl
+12/08/2023 22:47:05 - INFO - __main__ - save eval on /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/webMedQA.jsonl
+12/08/2023 22:47:05 - INFO - __main__ - /mnt/petrelfs/xuekui/code/pj_chinese_llama_13b_mchatgpt_public/code/eval/predict/QiZhenGPT/webMedQA.jsonl is finish, continue
