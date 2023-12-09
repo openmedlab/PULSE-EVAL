@@ -53,15 +53,15 @@ if __name__ == "__main__":
     ]
     # Construct Elo inputs. 
     # If you have already run this, you should comment out this line.
-    # construct_elo_inputs(eval_models, eval_datasets, start_p_idx=0)
+    construct_elo_inputs(eval_models, eval_datasets, start_p_idx=0)
     
     # Call Evaluator API to get Elo results.
     # If you have already run this, you should comment out this line.
-    # call_evaluator(
-    #     in_dir="eval/elo/elo_inputs",
-    #     to_dir="eval/elo/elo_outputs",
-    #     num_proc=50,
-    #     )
+    call_evaluator(
+        in_dir="eval/elo/elo_inputs",
+        to_dir="eval/elo/elo_outputs",
+        num_proc=50,
+        )
     
     # Get evaluation results
     eval_datasets.remove("MedTriage")

@@ -322,7 +322,7 @@ def get_elo_rank(
     return elo_df_use
 
 
-def chagGPT_generate(messages, model="gpt-4", stream=False):
+def GPT_generate(messages, model="gpt-4", stream=False):
     completion = openai.ChatCompletion.create(
         model=model,
         messages=messages,
@@ -333,7 +333,7 @@ def chagGPT_generate(messages, model="gpt-4", stream=False):
 
 def api_evaluate(data):
     data['output'] = data["messages"]
-    data['output'] = chagGPT_generate(data["messages"], )
+    data['output'] = GPT_generate(data["messages"], )
     return data
 
 def call_evaluator(
