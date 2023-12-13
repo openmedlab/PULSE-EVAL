@@ -46,7 +46,8 @@ def get_all_predict_data(all_predict_paths):
     return all_predict_data
  
       
-def get_table_rank(table, dataset_list):
+
+def get_table_rank(table: DataFrame, dataset_list):
     columns = table.columns
     datasets = []
     for col in columns:
@@ -55,10 +56,41 @@ def get_table_rank(table, dataset_list):
     for d in datasets:
         array = np.array(table[d])
         ranks = len(array) - array.argsort().argsort()
-        table[d] = ranks.tolist()
-    
+        ranks = ranks.tolist()
+        
+        # Check same score to be the same rank
+        r_dict = dict(zip(ranks, range(len(table))))  # rank to colomn index
+        
+        r_cnt = 1
+        pre_s = table.loc[r_dict[r_cnt], d]
+        n_cnt = 1
+        for rk in range(2, len(table) + 1):
+            score = table.loc[r_dict[rk], d]
+            if score != pre_s:
+                # add new ranks
+                # Change ranks from r_cnt to (r_cnt+n_cnt-1)
+                ave_rank = r_cnt / n_cnt
+                # ave_rank = rk - n_cnt - 1
+                for i in range(n_cnt):
+                    table.loc[r_dict[rk-i-1], d] = ave_rank
+                    
+                pre_s = score
+                r_cnt = rk
+                n_cnt = 1
+            else:
+                r_cnt += rk
+                n_cnt += 1
+                
+        ave_rank = r_cnt / n_cnt
+        # ave_rank = rk - n_cnt
+        for i in range(n_cnt):
+            table.loc[r_dict[rk-i], d] = ave_rank
+            
+        # for i in range(len(table)):
+        #     inum = int(table.loc[i, d])
+        #     if table.loc[i, d] == inum:
+        #         table.loc[i, d] = inum
     return table
-  
     
 def acc_evaluation(
     selected_models,
@@ -151,7 +183,7 @@ def write_to_md(
     ):
     if sort_value:
         table = table.sort_values(sort_value, ascending=ascending)
-    md_table = table.to_markdown(index=False, floatfmt=floatfmt)
+    md_table = table.to_markdown(index=False, floatfmt=floatfmt).replace(".00", "").replace(".50", ".5")
     
     if os.path.exists(to_path):
         os.remove(to_path)
