@@ -18,7 +18,7 @@
 在conda环境中执行以下命令：
 
 ```
-conda install --file requirements.txt
+conda env create -f environment.yaml
 ```
 
 ### 1.3 评测使用方法
