@@ -248,17 +248,20 @@ def construct_elo_inputs(model_list, dataset_list, start_p_idx=0):
 def elo_evaluation(
     models, 
     datasets,
-    elo_data_dir="eval/elo/elo_data"
+    elo_data_dir="eval/elo/elo_data/",
+    elo_outputs_path="eval/elo/elo_outputs/"
     ):
     dataset_paths = []
     
     for dataset_name in datasets:
-        dataset_paths += sorted(glob.glob(elo_data_dir + f"/{dataset_name}*.jsonl"))
+        dataset_paths += sorted(glob.glob(elo_data_dir + f"{dataset_name}*.jsonl"))
     
     print("Start Elo evaluation:")
     elo_score_table = get_elo_rank(
         selected_models=models,
         all_predict_paths=dataset_paths,
+        elo_data_path=elo_data_dir,
+        elo_outputs_path=elo_outputs_path
     )
     
     return elo_score_table
@@ -267,8 +270,8 @@ def elo_evaluation(
 def get_elo_rank(
     selected_models,
     all_predict_paths,
-    elo_data_path = "eval/elo/elo_data/",
-    elo_outputs_path = "eval/elo/elo_outputs/"
+    elo_data_path,
+    elo_outputs_path
     ):
     
     all_predict_data = get_all_predict_data(
