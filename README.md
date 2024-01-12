@@ -31,7 +31,9 @@ conda env create -f environment.yaml
 - 评测指标计算：Elo评测指标计算请见main.py文件中 `elo_evaluation`函数。其余Acc和F1指标计算，根据数据集有所不同，main.py中 `acc_evaluation`给出了导诊场景中使用的F1分数计算方法。
 - 将评测结果计算排名，并输出，请见score_table.md和rank_table.md。
 
-## 2. 评测数据集介绍
+## 2. 数据集介绍
+
+### 2.1 评测数据集
 
 本评测使用四类公开数据集，并开源四类自建的不同医疗应用数据集。
 
@@ -48,6 +50,18 @@ conda env create -f environment.yaml
 | **DialogSumm** |        从医患对话中生成五史一诉的数据集。测试模型的长文本生成能力。        |
 | **MedicineQA** |   给定标准参考文献时的用药咨询数据集。测试模型对长文本的理解和总结能力。   |
 | **CheckupQA** |  体检场景下的数值类咨询数据集。测试模型对于医疗相关数值的理解和分析能力。  |
+
+### 2.2 数据格式
+单条数据格式如下：
+```
+{
+  "type": "", 
+  "question": "", 
+  "reference_answer": "",
+  "predict_answer": ""
+}
+```
+其中type是数据集的名称，reference_answer是标准或参考回答，predict_answer是模型的回答。
 
 ## 3. 评测结果
 
